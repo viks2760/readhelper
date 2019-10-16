@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <input type="range" min="0.5" max="3" value="1" class="slider" id="myrange">
+  <p id="text" onmouseover="setTimeout(myFunction, 3000);">Click the button to change the value of the slider control. </p>
+
+  <script type="text/javascript">
+    var index = 0;
+    var counter = 0;
+
+
+
+    function myFunction() {
+      if (index > 0) {
+        var cdivpre = document.getElementById(index - 1);
+        cdivpre.style.backgroundColor = "white";
+      }
+
+      var cdiv = document.getElementById(index);
+      cdiv.style.backgroundColor = "#282828";
+      index++;
+      if (index < counter) {
+        var speed = document.getElementById('myrange').value;
+
+        setTimeout(myFunction, speed * 1000);
+
+      }
+
+
+    }
+
+    var str = document.getElementById('text').textContent; // gets the text from paragraph
+    var par = document.getElementById('text'); // strores the div p
+    par.innerHTML = "-"; //to remove the existing text from p
+
+    var l = 0;
+
+    for (var i = 0; i < str.length; i++) //to create div for each word
+    {
+
+
+
+      if (str[i] == " " || str == ".") {
+        var new_div = document.createElement("div");
+        new_div.className = "res_text";
+        new_div.id = counter;
+        counter = counter + 1;
+        var word = ""
+        for (var k = l; k < i; k++) {
+          word = word + str[k];
+
+        }
+        new_div.innerHTML = word;
+        par.appendChild(new_div);
+        l = i;
+      }
+      if (i == str.length - 1) {
+        var word = ""
+        for (var k = l; k <= i; k++) {
+          word = word + str[k];
+
+        }
+
+      }
+    }
+  </script>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=WBbCuG9Q"></script>
+</body>
+
+</html>
